@@ -10,3 +10,4 @@ def notify_customers(message):
     print(message) 
     sleep(10) 
     print('Emails were successfully sent!')
+    
