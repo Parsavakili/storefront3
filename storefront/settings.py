@@ -52,9 +52,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-
-
-    "corsheaders.middleware.CorsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -63,7 +61,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "django.middleware.common.CommonMiddleware",
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -185,11 +182,18 @@ EMAIL_HOST = 'localhost'
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 2525
-DEFAULT_FROM_EMAIL = 'parsa.vakili84@gmail.com'
+DEFAULT_FROM_EMAIL = 'from@moshbuy.com'
 
 ADMINS = [
-    ('parsa' , 'parsa.vakili84@gmail.com')
+    ('Mosh', 'admin@moshbuy.com')
 ]
 
-CELERY_BROKER_URL = 'redis://localhost:6379/1'
 
+CELERY_BROKER_URL = 'redis://localhost:6379/1'
+CELERY_BEAT_SCHEDULE = {
+    'notify_customers': {
+        'task': 'playground.tasks.notify_customers',
+        'schedule': 5,
+        'args': ['Hello World'],
+    }
+}
